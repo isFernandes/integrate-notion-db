@@ -5,10 +5,10 @@ O teste tem como objetivo a criação de uma API REST em Node JS. A API deve man
 ## Requisitos
 
 - A API a ser criada deve possuir 4 endpoints ao todo:
-  - Criação de novo registro no banco com dados que serão enviados pelo usuári;
-  - Buscar dados de registro especificado pelo usuário através do ID do registro;
-  - Atualizar registro especificado pelo usuário através do ID com dados também provenientes da requisição do usuário;
-  - Excluir um registro especificado pelo usuário através do ID.
+  - **Criação de novo registro** no banco com dados que serão enviados pelo usuári;
+  - **Buscar dados de um registro** especificado pelo usuário através do ID do registro;
+  - **Atualizar registro** especificado pelo usuário através do ID com dados também provenientes da requisição do usuário;
+  - **Excluir um registro** especificado pelo usuário através do ID.
 
 ## Description
 
@@ -40,13 +40,26 @@ $ npm run start:dev # rodando localmente com a observação de alterações
 $ npm run start:prod  # rodar o projeto compilado
 ```
 
+## Execução com Docker Compose
+
+**_*Acredito que você já tenha o DockerCompose instalado*_**
+
+- Crie um arquivo .env na raiz do projeto com as variáveis de ambiente necessárias (disponivel em _.env.example_).
+
+Execute o seguinte comando para iniciar os serviços definidos no docker-compose.yml:
+
+```bash
+$ docker-compose up --build
+
+```
+
 ## Testes
 
 ```bash
 $ npm run test
 ```
 
-## Resources
+## Recursos
 
 Essas são as tecnologias e ferramentas utilizadas no projeto:
 
