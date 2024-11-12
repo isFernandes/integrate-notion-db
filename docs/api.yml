@@ -1,0 +1,197 @@
+openapi: 3.0.0
+info:
+  title: Notions API
+  description: API para gerenciar notas e conteúdos no Notion.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/notions
+paths:
+  /:
+    post:
+      summary: Criar uma nova nota
+      operationId: createNotion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNotionDto'
+      responses:
+        '201':
+          description: Nota criada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notion'
+        '400':
+          description: Erro de validação
+    get:
+      summary: Listar todas as notas
+      operationId: findAllNotions
+      responses:
+        '200':
+          description: Lista de notas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notion'
+
+  /{id}:
+    get:
+      summary: Encontrar uma nota por ID
+      operationId: findOneNotion
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID da nota
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Nota encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notion'
+        '404':
+          description: Nota não encontrada
+
+    patch:
+      summary: Atualizar uma nota
+      operationId: updateNotion
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID da nota
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateNotionDto'
+      responses:
+        '200':
+          description: Nota atualizada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notion'
+        '404':
+          description: Nota não encontrada
+
+    delete:
+      summary: Remover uma nota
+      operationId: removeNotion
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID da nota
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Nota removida com sucesso
+        '404':
+          description: Nota não encontrada
+
+components:
+  schemas:
+    CreateNotionDto:
+      type: object
+      properties:
+        Content:
+          type: string
+        Language:
+          type: string
+        Image:
+          type: object
+          properties:
+            name:
+              type: string
+            type:
+              type: string
+            external:
+              type: object
+              properties:
+                url:
+                  type: string
+        Description:
+          type: string
+        Campaign:
+          type: string
+        Where:
+          type: string
+        PlannedDate:
+          type: string
+          format: date
+        Company:
+          type: string
+    UpdateNotionDto:
+      type: object
+      properties:
+        Content:
+          type: string
+        Language:
+          type: string
+        Image:
+          type: object
+          properties:
+            name:
+              type: string
+            type:
+              type: string
+            external:
+              type: object
+              properties:
+                url:
+                  type: string
+        Description:
+          type: string
+        Campaign:
+          type: string
+        Where:
+          type: string
+        PlannedDate:
+          type: string
+          format: date
+        Company:
+          type: string
+    Notion:
+      type: object
+      properties:
+        id:
+          type: integer
+        Content:
+          type: string
+        Language:
+          type: string
+        Image:
+          type: object
+          properties:
+            name:
+              type: string
+            type:
+              type: string
+            external:
+              type: object
+              properties:
+                url:
+                  type: string
+        Description:
+          type: string
+        Campaign:
+          type: string
+        Where:
+          type: string
+        PlannedDate:
+          type: string
+          format: date
+        Company:
+          type: string
