@@ -14,4 +14,4 @@ services:
       NOTION_DEFAULT_VERSION: ${NOTION_DEFAULT_VERSION}
     volumes:
       - .:/usr/src/app
-    command: npm start:prod
+    command: npm run start:prod
